@@ -4,8 +4,11 @@ const Product = mongoose.model("Product", {
   name: {
     type: String,
   },
-  quantity: {
+  price: {
     type: Number,
+  },
+  image: {
+    type: String,
   },
 });
 

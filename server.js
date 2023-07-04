@@ -1,7 +1,7 @@
 const express = require("express");
 
-const userRoute = require("./models/user");
-const productRoute = require("./models/product");
+const userRoute = require("./routes/user");
+const productRoute = require("./routes/product");
 
 require("./config/connect");
 
