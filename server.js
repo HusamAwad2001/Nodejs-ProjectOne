@@ -14,6 +14,8 @@ app.use(express.json());
 app.use("/user", userRoute);
 app.use("/product", productRoute);
 
+app.use("/getImage", express.static("./uploads"));
+
 app.listen(3000, () => {
   console.log("Server is running!");
 });
