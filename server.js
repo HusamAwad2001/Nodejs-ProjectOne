@@ -80,6 +80,47 @@ app.get("/getUserById/:id", async (req, res) => {
   }
 });
 
+// delete user by id
+app.delete("/deleteUser/:id", async (req, res) => {
+  try {
+    id = req.params.id;
+    deletedUser = await User.findOneAndDelete({ _id: id });
+    res.send(deletedUser);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+// update user
+
+app.put("/update/:id", async (req, res) => {
+  // id = req.params.id;
+
+  try {
+    id = req.params.id;
+    newData = req.body;
+
+    updated = await User.findByIdAndUpdate({ _id: id }, newData);
+
+    res.send(updated);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+// app.put("/update/:id", (req, res) => {
+//   try {
+//     id = req.params.id;
+//     newData = req.body;
+
+//     updated = User.findByIdAndUpdate({ _id: id }, newData);
+
+//     res.send(updated);
+//   } catch (error) {
+//     res.send(error);
+//   }
+// });
+
 // -------------------------------------------------------
 app.listen(3000, () => {
   console.log("Server is running!");
