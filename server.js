@@ -57,6 +57,19 @@ app.get("/getAllProducts", async (req, res) => {
   }
 });
 
+// get user by id
+
+app.get("/getUserById/:id", (req, res) => {
+  myId = req.params.id;
+  User.findOne({ _id: myId })
+    .then((user) => {
+      res.send(user);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 // -------------------------------------------------------
 app.listen(3000, () => {
   console.log("Server is running!");
