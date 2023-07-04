@@ -9,32 +9,6 @@ app.use(express.json());
 
 // -------------------------------------------------------
 
-// app.post("/addUser", (req, res) => {
-//   data = req.body;
-//   user = new User(data);
-//   user
-//     .save()
-//     .then((savedUser) => {
-//       res.send(savedUser);
-//     })
-//     .catch((err) => {
-//       res.send(err);
-//     });
-// });
-
-// app.post("/addProduct", (req, res) => {
-//   data = req.body;
-//   product = new Product(data);
-//   product
-//     .save()
-//     .then((savedProduct) => {
-//       res.send(savedProduct);
-//     })
-//     .catch((err) => {
-//       res.send(err);
-//     });
-// });
-
 app.post("/createUser", async (req, res) => {
   try {
     data = req.body;
@@ -63,32 +37,10 @@ app.post("/createProduct", async (req, res) => {
   }
 });
 
-// // get all users
-// app.get("/getAllUsers", (req, res) => {
-//   User.find()
-//     .then((users) => {
-//       res.send(users);
-//     })
-//     .catch((err) => {
-//       res.send(err);
-//     });
-// });
-
-// // get all products
-// app.get("/getAllProducts", (req, res) => {
-//   Product.find()
-//     .then((products) => {
-//       res.send(products);
-//     })
-//     .catch((err) => {
-//       res.send(err);
-//     });
-// });
-
 // get all users with async await
 app.get("/getAllUsers", async (req, res) => {
   try {
-    users = await User.find();
+    users = await User.find({ age: 22 });
     res.send(users);
   } catch (error) {
     res.send(err);
