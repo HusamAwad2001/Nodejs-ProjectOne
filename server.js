@@ -40,7 +40,7 @@ app.post("/createProduct", async (req, res) => {
 // get all users with async await
 app.get("/getAllUsers", async (req, res) => {
   try {
-    users = await User.find({ age: 22 });
+    users = await User.find();
     res.send(users);
   } catch (error) {
     res.send(err);
@@ -59,15 +59,25 @@ app.get("/getAllProducts", async (req, res) => {
 
 // get user by id
 
-app.get("/getUserById/:id", (req, res) => {
-  myId = req.params.id;
-  User.findOne({ _id: myId })
-    .then((user) => {
-      res.send(user);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+// app.get("/getUserById/:id", (req, res) => {
+//   myId = req.params.id;
+//   User.findOne({ _id: myId })
+//     .then((user) => {
+//       res.send(user);
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// });
+
+app.get("/getUserById/:id", async (req, res) => {
+  try {
+    myId = req.params.id;
+    user = await User.findOne({ _id: myId });
+    res.send(user);
+  } catch (error) {
+    res.send(err);
+  }
 });
 
 // -------------------------------------------------------
