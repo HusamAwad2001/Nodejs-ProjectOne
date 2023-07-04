@@ -7,6 +7,8 @@ require("./config/connect");
 const app = express();
 app.use(express.json());
 
+// -------------------------------------------------------
+
 app.post("/addUser", (req, res) => {
   data = req.body;
   user = new User(data);
@@ -33,6 +35,35 @@ app.post("/addProduct", (req, res) => {
     });
 });
 
+app.post("/createUser", async (req, res) => {
+  try {
+    data = req.body;
+
+    user = new User(data);
+
+    savedUser = await user.save();
+
+    res.send(savedUser);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+app.post("/createProduct", async (req, res) => {
+  try {
+    data = req.body;
+
+    product = new Product(data);
+
+    savedProduct = await product.save();
+
+    res.send(savedProduct);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+// -------------------------------------------------------
 app.listen(3000, () => {
   console.log("Server is running!");
 });
