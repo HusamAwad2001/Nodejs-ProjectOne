@@ -17,9 +17,9 @@ app.post("/createUser", async (req, res) => {
 
     savedUser = await user.save();
 
-    res.send(savedUser);
+    res.status(201).send(savedUser);
   } catch (error) {
-    res.send(error);
+    res.status(400).send(error);
   }
 });
 
@@ -31,7 +31,7 @@ app.post("/createProduct", async (req, res) => {
 
     savedProduct = await product.save();
 
-    res.send(savedProduct);
+    res.status(201).send(savedProduct);
   } catch (error) {
     res.send(error);
   }
@@ -41,9 +41,9 @@ app.post("/createProduct", async (req, res) => {
 app.get("/getAllUsers", async (req, res) => {
   try {
     users = await User.find();
-    res.send(users);
+    res.status(200).send(users);
   } catch (error) {
-    res.send(err);
+    res.status(400).send(err);
   }
 });
 
@@ -51,9 +51,9 @@ app.get("/getAllUsers", async (req, res) => {
 app.get("/getAllProducts", async (req, res) => {
   try {
     products = await Product.find();
-    res.send(products);
+    res.status(200).send(products);
   } catch (error) {
-    res.send(err);
+    res.status(400).send(err);
   }
 });
 
@@ -74,9 +74,9 @@ app.get("/getUserById/:id", async (req, res) => {
   try {
     myId = req.params.id;
     user = await User.findOne({ _id: myId });
-    res.send(user);
+    res.status(200).send(user);
   } catch (error) {
-    res.send(err);
+    res.status(400).send(err);
   }
 });
 
@@ -85,9 +85,9 @@ app.delete("/deleteUser/:id", async (req, res) => {
   try {
     id = req.params.id;
     deletedUser = await User.findOneAndDelete({ _id: id });
-    res.send(deletedUser);
+    res.status(200).send(deletedUser);
   } catch (error) {
-    res.send(error);
+    res.status(400).send(error);
   }
 });
 
@@ -102,24 +102,11 @@ app.put("/update/:id", async (req, res) => {
 
     updated = await User.findByIdAndUpdate({ _id: id }, newData);
 
-    res.send(updated);
+    res.status(200).send(updated);
   } catch (error) {
-    res.send(error);
+    res.status(400).send(error);
   }
 });
-
-// app.put("/update/:id", (req, res) => {
-//   try {
-//     id = req.params.id;
-//     newData = req.body;
-
-//     updated = User.findByIdAndUpdate({ _id: id }, newData);
-
-//     res.send(updated);
-//   } catch (error) {
-//     res.send(error);
-//   }
-// });
 
 // -------------------------------------------------------
 app.listen(3000, () => {
