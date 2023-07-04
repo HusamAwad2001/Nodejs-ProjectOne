@@ -63,26 +63,46 @@ app.post("/createProduct", async (req, res) => {
   }
 });
 
-// get all users
-app.get("/getAllUsers", (req, res) => {
-  User.find()
-    .then((users) => {
-      res.send(users);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+// // get all users
+// app.get("/getAllUsers", (req, res) => {
+//   User.find()
+//     .then((users) => {
+//       res.send(users);
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// });
+
+// // get all products
+// app.get("/getAllProducts", (req, res) => {
+//   Product.find()
+//     .then((products) => {
+//       res.send(products);
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// });
+
+// get all users with async await
+app.get("/getAllUsers", async (req, res) => {
+  try {
+    users = await User.find();
+    res.send(users);
+  } catch (error) {
+    res.send(err);
+  }
 });
 
-// get all products
-app.get("/getAllProducts", (req, res) => {
-  Product.find()
-    .then((products) => {
-      res.send(products);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+// get all products with async await
+app.get("/getAllProducts", async (req, res) => {
+  try {
+    products = await Product.find();
+    res.send(products);
+  } catch (error) {
+    res.send(err);
+  }
 });
 
 // -------------------------------------------------------
